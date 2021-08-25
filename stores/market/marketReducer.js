@@ -7,7 +7,7 @@ const initialState = {
 	loading: false,
 };
 
-const marketReducer = ({ state = initialState, action }) => {
+const marketReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case marketActions.GET_HOLDINGS_BEGIN:
 			return {
@@ -28,6 +28,11 @@ const marketReducer = ({ state = initialState, action }) => {
 			return {
 				...state,
 				loading: true,
+			};
+		case marketActions.GET_COIN_MARKET_SUCCESS:
+			return {
+				...state,
+				coins: action.payload.coins,
 			};
 		case marketActions.GET_COIN_MARKET_FAILURE:
 			return {

@@ -48,7 +48,10 @@ export function getHoldings(
 			header: { Accept: 'application/json' },
 		})
 			.then((response) => {
-				if (response.state == 200) {
+				console.log('Get Holdings');
+				console.log(response);
+
+				if (response.status == 200) {
 					// Message data
 					let myHoldings = response.data.map((item) => {
 						// Retrieve our current holdings -> current quantity
@@ -63,6 +66,7 @@ export function getHoldings(
 							id: item.id,
 							symbol: item.symbol,
 							name: item.name,
+							image: item.image,
 							current_price: item.current_price,
 							qty: coin.qty,
 							total: coin.qty * item.current_price,
@@ -100,7 +104,7 @@ export const getCoinMarketSuccess = (coins) => ({
 	payload: { coins },
 });
 
-export const getCoinMarketSuccess = (error) => ({
+export const getCoinMarketFailure = (error) => ({
 	type: GET_COIN_MARKET_FAILURE,
 	payload: { error },
 });
@@ -127,7 +131,9 @@ export function getCoinMarket(
 			},
 		})
 			.then((response) => {
-				if (response.state == 200) {
+				console.log('GetCoinMarket');
+				console.log(response);
+				if (response.status == 200) {
 					dispatch(getCoinMarketSuccess(response.data));
 				} else {
 					dispatch(getCoinMarketFailure(response.data));

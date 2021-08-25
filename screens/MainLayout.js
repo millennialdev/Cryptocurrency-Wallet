@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { View, Animated, Text } from 'react-native';
+import { View, Animated } from 'react-native';
 import { COLORS, SIZES, icons } from '../constants';
 import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
