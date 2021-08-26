@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getHoldings, getCoinMarket } from '../stores/market/marketActions';
 import { useFocusEffect } from '@react-navigation/native';
 import { SIZES, COLORS, FONTS, dummyData, icons } from '../constants';
-import { BalanceInfo, IconTextButton } from '../components';
+import { BalanceInfo, IconTextButton, Chart } from '../components';
 
 const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
 	useFocusEffect(
@@ -73,6 +73,10 @@ const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
 				{renderWalletInfoSection()}
 
 				{/* Chart */}
+				<Chart
+					containerStyle={{ marginTop: SIZES.padding * 2 }}
+					chartPrices={coins[0]?.sparkline_in_7d?.price}
+				/>
 
 				{/* Top Cryptocurrency */}
 			</View>
