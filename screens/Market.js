@@ -27,6 +27,7 @@ const marketTabs = constants.marketTabs.map((marketTab) => ({
 
 const TabIndicator = ({ measureLayout, scrollX }) => {
 	const inputRange = marketTabs.map((_, i) => i * SIZES.width);
+
 	const translateX = scrollX.interpolate({
 		inputRange,
 		outputRange: measureLayout.map((measure) => measure.x),
@@ -41,11 +42,7 @@ const TabIndicator = ({ measureLayout, scrollX }) => {
 				width: (SIZES.width - SIZES.radius * 2) / 2,
 				borderRadius: SIZES.radius,
 				backgroundColor: COLORS.lightGray,
-				transform: [
-					{
-						translateX,
-					},
-				],
+				transform: [{ translateX }],
 			}}
 		/>
 	);
@@ -90,8 +87,7 @@ const Tabs = ({ scrollX, onMarketTabPress }) => {
 					<TouchableOpacity
 						key={`MarketTab-${index}`}
 						style={{ flex: 1 }}
-						// onPress
-					>
+						onPress={() => onMarketTabPress(index)}>
 						<View
 							ref={item.ref}
 							style={{
@@ -99,7 +95,11 @@ const Tabs = ({ scrollX, onMarketTabPress }) => {
 								alignItems: 'center',
 								justifyContent: 'center',
 								height: 40,
-							}}></View>
+							}}>
+							<Text style={{ color: COLORS.white, ...FONTS.h3 }}>
+								{item.title}
+							</Text>
+						</View>
 					</TouchableOpacity>
 				);
 			})}
